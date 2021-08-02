@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+    overflow: hidden;
+}
+
+.title {
+    text-align:center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+ p {
+    text-align:center;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+.jumbotron {
+    background-color: #F6EDE6 !important;
+    padding: 20;
+    margin: 10;
+}
+

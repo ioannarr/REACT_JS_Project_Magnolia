@@ -1,0 +1,38 @@
+h1{
+    letter-spacing: 14px; 
+    font-family: serif;
+    color: black !important;
+    margin-left: 10%;    
+
+}
+.menu{
+    display: flex;
+    flex-direction: horizontal;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+
+} 
+
+.menu a{
+    color: black !important;
+    letter-spacing: 5px;
+    margin: 20px;   
+}
+.nav-item{
+    font-size:  18px;
+    letter-spacing: 14px; 
+    font-family: serif;
+}
+
+.cont{
+    height: 5vh;
+}
+
+
+.row{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+
