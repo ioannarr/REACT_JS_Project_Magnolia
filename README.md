@@ -1,10 +1,10 @@
 
 Magnolia is an ecommerce store for home goods inspired by Magnoliashop.com This code repo, serves as the Final Version for the REACT course at Coderhouse.com 
 
-Tech stack: REACT, JAVASCRIPT, HTML, CSS
+Tech stack: REACT, JAVASCRIPT
 
 Dependencies installed:
-Node.js, React Dom, Firebase for React, Bootstrap for React.
+Node.js, React Dom, Node, Firebase for React, Bootstrap for React.
 
 Features:
 useState and useEffect,
