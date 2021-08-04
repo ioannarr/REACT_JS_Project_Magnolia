@@ -3,12 +3,14 @@ import { useHistory  } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import CartContext from './CartContext';
 import Table from 'react-bootstrap/Table'
-import { Jumbotron } from 'react-bootstrap';
+import { Jumbotron, Nav } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
+import {Link} from "react-router-dom";
 import './Cart.css';
 
 const CartView = () => {
     const {cart, removeItem, clear,totalCart, totalQuantity} = useContext(CartContext);
+    console.log(cart);
     const {id}  = useParams(); 
     const history = useHistory(); 
 
@@ -24,7 +26,6 @@ const CartView = () => {
                     <thead>
                             <tr>
                             <th>Item Title</th>
-                            <th>Item Description</th>
                             <th>Item Price</th>
                             <th>Item Quantity</th>
                             <th>Item Total</th>                           
@@ -34,29 +35,21 @@ const CartView = () => {
                     <tbody>
           
             { (cart.length>0) ?          
-                cart.map((cartItem) => {
+                cart.map((c,i) => {
                     return(
-                      <>   
-                       {/* <div key={index}> */}
-                        {cartItem.item.map((c,i) => {         
-                             return( 
-                               <> 
+                      <>                             
                                 <tr key={i}>                                 
-                                    <td>{c.title}</td>
-                                    <td>{c.description}</td>
-                                    <td>{c.price}</td>
-                                    <td>{cartItem.counter}</td>
-                                    <td>{(cartItem.counter * c.price).toFixed(2)}</td>                                            
+                                    <td>{c.item !==undefined ? c.item[0].title : "empty" }</td>
+                                    <td>{c.item !==undefined ? c.item[0].price : "empty"}</td>
+                                    <td>{c !==undefined ? c.counter: "empty"}</td>
+                                    <td>{c.item !==undefined ?(c.counter * c.item[0].price).toFixed(2): "empty"}</td>                                            
                                     <td>   
                                         <div className="Actions">
                                             <Button style={{margin:"10px"}} variant= "dark" onClick={()=> history.goBack()}>Edit</Button>
-                                            <Button style={{margin:"10px"}} variant= "dark" onClick={removeItem}>Remove</Button>
+                                            <Button style={{margin:"10px"}} variant= "dark" onClick={()=> removeItem(c.item)}>Remove</Button>
                                         </div>
                                     </td>
                                 </tr> 
-                            </>
-                            )})}
-                        {/* </div>                     */}
                         </>                 
                     )})
                        :
@@ -80,6 +73,11 @@ const CartView = () => {
                     </div>
                     <div>
                         <Button variant="dark" onClick={clear}>ClearCart</Button>
+                        <Nav.Item><Nav.Link>
+                        <Link to="/Order">    
+                        <Button variant="dark"><span onClick={()=> history.push('/Order')}></span>MY ORDER </Button>                   
+                        </Link>
+                        </Nav.Link></Nav.Item>
                     </div>
                 </div>
         </div>
