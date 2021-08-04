@@ -1,41 +1,62 @@
 import React,{useState} from 'react';
-import { useParams } from 'react-router-dom';
 import CartContext from './CartContext';
 
 export default function CartProvider ({defaultValue = [], children}) {
 
 const[cart, setCart] = useState(defaultValue);
-// console.log(cart);
-// const {id} = useParams();
+console.log(cart);
+
 
 const addItem = (item, counter) =>{
-    // console.log(item)
-    if(isInCart(item.id)) {
-        const cartNuevo = cart.map((cartItem) => {
-            cartItem.item.map ((c)=>{
-
-            if(cartItem.item.id === item.id){
-            
-                return { 
-                    cartItem, counter: cartItem.counter + counter
-                }
-            } else {
-                return cartItem;
-            }             
-        })
+    if(isInCart(item[0].id)) {
+        cart.forEach((cartItem) => {
+            console.log(counter)
+            console.log(cartItem.item[0].id)
+            console.log(item[0].id)
+            if(cartItem.item[0].id === item[0].id){
+                    cartItem.counter += counter               
+            }                      
     })
- setCart(cartNuevo);
-  
+
     } else {                   
         setCart([...cart, {item,counter}]);
     }
 };
 
 
+// const addItem = (item, counter) =>{
+//     console.log(item)
+//     if(isInCart(item[0].id)) {
+//         const cartNuevo = cart.map((cartItem) => {
+//             console.log(counter)
+//             console.log(cartItem.item[0].id)
+//             console.log(item[0].id)
+//             if(cartItem.item[0].id === item[0].id){
+
+//                 return {                   
+//                     cartItem, counter: cartItem.counter + counter
+                    
+//                 }
+//             } else {
+//                 return cartItem;
+//             }             
+//     })
+
+//  setCart(cartNuevo);
+  
+//     } else {                   
+//         setCart([...cart, {item,counter}]);
+//     }
+// };
+
+
+
+
 const totalQuantity = () =>{
     let totalQ = 0
-    cart.forEach((cartItem)=>{
-    totalQ += cartItem.counter
+    cart.forEach((i)=>{
+        console.log(i.counter)
+    totalQ += i.counter
     })
     return totalQ;
 }
@@ -43,26 +64,23 @@ const totalQuantity = () =>{
 const totalCart = () =>{
         
     let total = 0;        
-        cart.map((cartItem)=>{            
-            cartItem.item.map((c) =>{
-                // console.log(cartItem.counter) 
-                // console.log(c.price) 
-                total += cartItem.counter * c.price;
-            })
-            // console.log(total)
-                           
-        })  
-        return total;   
-                
+        cart.forEach((cartItem)=>{            
+                console.log(cartItem.counter) 
+              
+                if(cartItem.item !==  undefined){ 
+                    console.log(cartItem.item[0].price)
+                    total += cartItem.counter * cartItem.item[0].price;
+                }
+        })
+        console.log(total)
+    return total;     
  };
 
 const removeItem = (item) => {
-   
-     let index = cart.findIndex((c) => c.item.id === item.id)
-     if (index!==-1){                                
-         console.log(index)
-         setCart(cart.splice(index+1,1))
-     }              
+    console.log(item)
+     let fitleredCart = cart.filter((c) => c.item[0].id !== item[0].id)
+     
+     setCart(fitleredCart)              
 };
 
 
@@ -71,20 +89,23 @@ const clear = () => {
 };
 
 const isInCart = (id) => {
-    let parsing = parseFloat(id)
-    const findInCart = cart.find((cartItem) => cartItem.item.id === parsing);
-    // console.log(parsing)
-       if(findInCart){
+    console.log(id)
+    const findInCart = cart.find((i) => i!== undefined ? i.item[0].id == id : null);
+                   //console.log(cart[0].item[0].id)
+    console.log(findInCart)
+    
+    if(findInCart !== undefined){
           return true;
              }else{
           return false;
              }
-
     };
+
+
 
     return(
         <div>
-            <CartContext.Provider value={{cart, setCart,addItem, clear, isInCart, removeItem,totalCart,totalQuantity}}>
+            <CartContext.Provider value={{cart, setCart,addItem, clear, isInCart, removeItem, totalCart, totalQuantity}}>
             {children}
             </CartContext.Provider>
         </div>
