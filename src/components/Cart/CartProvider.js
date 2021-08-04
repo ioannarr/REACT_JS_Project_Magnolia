@@ -23,35 +23,6 @@ const addItem = (item, counter) =>{
     }
 };
 
-
-// const addItem = (item, counter) =>{
-//     console.log(item)
-//     if(isInCart(item[0].id)) {
-//         const cartNuevo = cart.map((cartItem) => {
-//             console.log(counter)
-//             console.log(cartItem.item[0].id)
-//             console.log(item[0].id)
-//             if(cartItem.item[0].id === item[0].id){
-
-//                 return {                   
-//                     cartItem, counter: cartItem.counter + counter
-                    
-//                 }
-//             } else {
-//                 return cartItem;
-//             }             
-//     })
-
-//  setCart(cartNuevo);
-  
-//     } else {                   
-//         setCart([...cart, {item,counter}]);
-//     }
-// };
-
-
-
-
 const totalQuantity = () =>{
     let totalQ = 0
     cart.forEach((i)=>{
