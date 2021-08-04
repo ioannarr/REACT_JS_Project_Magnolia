@@ -56,10 +56,15 @@ const totalCart = () =>{
                 
  };
 
-const removeItem = (item) => { 
-    const filteredCart =  cart.filter((cartItem) => cartItem.id !== item.id);
-    setCart(filteredCart);            
+const removeItem = (item) => {
+   
+     let index = cart.findIndex((c) => c.item.id === item.id)
+     if (index!==-1){                                
+         console.log(index)
+         setCart(cart.splice(index+1,1))
+     }              
 };
+
 
 const clear = () => {
     setCart(defaultValue);
