@@ -1,6 +1,6 @@
 # Magnolia React Ecommerce Sample Store
 
-## Project Descriptcion
+## Project Description
 
 Magnolia is an ecommerce store for home goods inspired by Magnoliashop.com This code repo, serves as the Final Version for the REACT course at Coderhouse.com 
 
